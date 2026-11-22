@@ -1,0 +1,9 @@
+body {
+    background-color: antiquewhite;
+}
+
+h1 {
+    padding: 10px;
+    margin: 15px, auto;
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "title": "The C Programming Language",
+    "authors": [
+      "Brian Kernighan",
+      "Dennis Ritchie"
+    ],
+    "year": 1978,
+    "checked_out": false
+  },
+  {
+    "id": 2,
+    "title": "Clean Code",
+    "authors": [
+      "Robert C. Martin"
+    ],
+    "year": 2008,
+    "checked_out": true
+  },
+  {
+    "id": 3,
+    "title": "The Pragmatic Programmer",
+    "authors": [
+      "Andrew Hunt",
+      "David Thomas"
+    ],
+    "year": 1999,
+    "checked_out": false
+  },
+  {
+    "id": 4,
+    "title": "Design Patterns",
+    "authors": [
+      "Erich Gamma",
+      "Richard Helm",
+      "Ralph Johnson",
+      "John Vlissides"
+    ],
+    "year": 1994,
+    "checked_out": false
+  },
+  {
+    "id": 5,
+    "title": "Eloquent JavaScript",
+    "authors": [
+      "Marijn Haverbeke"
+    ],
+    "year": 2011,
+    "checked_out": false
+  },
+  {
+    "id": 6,
+    "title": "CSC 210 Survival Guide",
+    "authors": [
+      "CSC 210 Students"
+    ],
+    "year": null,
+    "checked_out": false
+  }
+]
