@@ -12,17 +12,29 @@ function App() {
   const [error, setError] = useState('')
   const [user, setUser] = useState(null);
 
+  async function loadBooks() {
+    try {
+      const response = await fetch(`${API_BASE}/books`)
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Could not load books')
+      setBooks(data)
+      setError('')
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
   useEffect(() => {
-    async function load(){
-      const res = await fetch (`${API_BASE}/books`);
-      setBooks(await res.json());
+    async function loadUser() {
       const me = await fetch(`${API_BASE}/me`, { credentials: "include" });
       if (me.ok) {
         setUser(await me.json());
       }
     }
-    load()
+    loadBooks()
+    loadUser()
   }, []);
+
   async function handleLogout() {
     await fetch (`${API_BASE}/logout`, {method: "POST", credentials: "include"});
     setUser(null);
@@ -60,26 +72,6 @@ function App() {
     }
   }
 
-  async function Buildlibrary() {
-    try {
-      const response = await fetch(`${API_BASE}/books`)
-      const data = await response.json()
-      if (!response.ok) throw new Error(data.error || 'Could not load books')
-      setBooks(data)
-      setError('')
-    } catch (err) {
-      setError(err.message)
-    }
-  }
-
-  useEffect(() => {
-    Buildlibrary()
-  }, [])
-
-  function deleteBook(bookId) {
-    setBooks((currentBooks) => currentBooks.filter((book) => book.id !== bookId))
-  }
-
   async function submit(payload) {
     setError('')
     try {
@@ -90,10 +82,16 @@ function App() {
         body: JSON.stringify(payload),
       })
 
+      if (response.status === 401) {
+        setUser(null)
+        setError('Please log in again')
+        return
+      }
+
       const data = await response.json()
       if (!response.ok) throw new Error(data.error || 'Could not add book')
 
-      await Buildlibrary()
+      await loadBooks()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not add book')
     }

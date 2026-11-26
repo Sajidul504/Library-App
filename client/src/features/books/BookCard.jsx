@@ -18,9 +18,7 @@ function BookItem({ book, user, onDelete, onToggle }) {
             <div className="book-card-details">
                 <h3>{book.title}</h3>
                 <div className="book-card-meta">
-                    <p>{book.authors.map((author) => (
-                        <span key={author}>{author}, </span>
-                    ))}</p>
+                    <p>{book.authors.join(', ')}</p>
                     <p>{book.year}</p>
                 </div>
             </div>
