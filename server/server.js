@@ -33,11 +33,7 @@ app.get("/api/books", async (req, res) => {
   res.json(await Book.findAll());
 });
 
-app.get("/api/me", requireAuth, (req, res) => {
-res.json({ id: req.user.id, username: req.user.username });
-});
-
-app.get("/api/books", async (req, res) => {
+app.get("/api/books/:id", async (req, res) => {
   const book = await Book.findByPk(req.params.id);
   if (!book) {
     return res.status(404).json({ error : "Book not found" })
